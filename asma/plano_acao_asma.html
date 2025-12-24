@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Ação da Asma</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --yellow: #ca8a04;
+  --yellow-bg: #fef9c3;
+  --red: #dc2626;
+  --red-bg: #fee2e2;
+  --paper: #fafafa;
+  --card: #fff;
+  --line: #e5e5e5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 10px;
+  line-height: 1.35;
+  padding: 10px;
+}
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 14px 16px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+h1 { font-size: 20px; font-weight: 800; }
+.patient-fields {
+  display: flex;
+  gap: 12px;
+  font-size: 9px;
+}
+.field { border-bottom: 1px solid var(--ink); min-width: 100px; }
+.field-label { font-weight: 600; }
+
+.med-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+  background: #f0f9ff;
+  border: 2px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.med-box h3 { font-size: 10px; font-weight: 700; margin-bottom: 4px; color: #1d4ed8; }
+.med-name { font-size: 13px; font-weight: 700; }
+.med-dose { font-size: 9px; color: #555; }
+
+.zones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.zone {
+  border-radius: 8px;
+  padding: 10px;
+}
+.zone-green { background: var(--green-bg); border: 2px solid var(--green); }
+.zone-yellow { background: var(--yellow-bg); border: 2px solid var(--yellow); }
+.zone-red { background: var(--red-bg); border: 2px solid var(--red); }
+
+.zone-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.zone-icon { font-size: 18px; }
+.zone-title { font-size: 12px; font-weight: 800; }
+.zone-green .zone-title { color: var(--green); }
+.zone-yellow .zone-title { color: var(--yellow); }
+.zone-red .zone-title { color: var(--red); }
+
+.zone h4 { font-size: 9px; font-weight: 700; margin: 6px 0 3px; }
+.zone ul { margin: 0; padding-left: 14px; }
+.zone li { margin-bottom: 2px; }
+
+.action-box {
+  background: rgba(255,255,255,0.7);
+  border-radius: 4px;
+  padding: 6px;
+  margin-top: 6px;
+}
+.action-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.action-num {
+  width: 16px;
+  height: 16px;
+  background: var(--ink);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.dose-inline {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 9px;
+}
+.dose-c { background: #dbeafe; color: #1d4ed8; }
+.dose-r { background: #ffedd5; color: #c2410c; }
+
+.samu-box {
+  background: var(--red);
+  color: white;
+  text-align: center;
+  padding: 6px;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+.samu-num { font-size: 20px; font-weight: 800; }
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.triggers-box, .info-box {
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+}
+.triggers-box h3, .info-box h3 { font-size: 10px; font-weight: 700; margin-bottom: 6px; }
+.triggers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.trigger-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+}
+.trigger-item input { width: 12px; height: 12px; }
+
+.threshold-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.threshold {
+  flex: 1;
+  text-align: center;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 9px;
+}
+.t-green { background: var(--green-bg); border: 1px solid var(--green); }
+.t-yellow { background: var(--yellow-bg); border: 1px solid var(--yellow); }
+.t-red { background: var(--red-bg); border: 1px solid var(--red); }
+.threshold .num { font-size: 12px; font-weight: 700; }
+
+.corticoide-box {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 4px;
+  padding: 6px;
+  margin-top: 6px;
+  font-size: 9px;
+}
+.corticoide-box strong { color: #b45309; }
+
+.next-appt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0fdf4;
+  border: 2px solid var(--green);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+.next-appt-icon { font-size: 18px; }
+.next-appt-label { font-weight: 700; }
+.next-appt-field { flex: 1; border-bottom: 1px solid var(--ink); }
+
+.footer-msg {
+  background: #fef3c7;
+  border-radius: 4px;
+  padding: 6px 10px;
+  text-align: center;
+  font-size: 9px;
+  margin-bottom: 8px;
+}
+
+.refs {
+  font-size: 7px;
+  color: #888;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  padding-top: 6px;
+}
+
+.print-btn { text-align: right; margin-top: 8px; }
+button {
+  background: var(--ink);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media print {
+  body { padding: 0; }
+  .page { box-shadow: none; padding: 8px; }
+  .print-btn { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <h1>🫁 Meu Plano da Asma</h1>
+    <div class="patient-fields">
+      <div><span class="field-label">Nome:</span> <span class="field"></span></div>
+      <div><span class="field-label">Data:</span> <span class="field"></span></div>
+    </div>
+  </header>
+
+  <div class="med-row">
+    <div class="med-box">
+      <h3>💊 MEU CONTROLADOR (todo dia)</h3>
+      <div class="med-name">_______________________</div>
+      <div class="med-dose">Dose: ______ • Horário: ______</div>
+    </div>
+    <div class="med-box">
+      <h3>⚡ MEU RESGATE (SOS)</h3>
+      <div class="med-name">_______________________</div>
+      <div class="med-dose">Dose: ______ jatos quando precisar</div>
+    </div>
+  </div>
+
+  <div class="zones">
+    <!-- VERDE -->
+    <div class="zone zone-green">
+      <div class="zone-header">
+        <span class="zone-icon">😊</span>
+        <span class="zone-title">VERDE — Tudo Bem</span>
+      </div>
+      <h4>✅ Como está:</h4>
+      <ul>
+        <li>Dorme a noite toda</li>
+        <li>Atividades normais</li>
+        <li>Resgate ≤ 2×/semana</li>
+      </ul>
+      <div class="action-box">
+        <h4>👍 Fazer:</h4>
+        <div class="action-step">
+          <span class="action-num">1</span>
+          <span>Continue o <span class="dose-inline dose-c">CONTROLADOR</span> todo dia</span>
+        </div>
+        <div class="action-step">
+          <span class="action-num">2</span>
+          <span>Evite os gatilhos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMARELA -->
+    <div class="zone zone-yellow">
+      <div class="zone-header">
+        <span class="zone-icon">😟</span>
+        <span class="zone-title">AMARELA — Atenção</span>
+      </div>
+      <h4>⚠️ Sinais:</h4>
+      <ul>
+        <li>Tosse, chiado, aperto</li>
+        <li>Acordou à noite</li>
+        <li>Cansaço para atividades</li>
+      </ul>
+      <div class="action-box">
+        <h4>⚡ Fazer AGORA:</h4>
+        <div class="action-step">
+          <span class="action-num">1</span>
+          <span><span class="dose-inline dose-r">RESGATE</span> 2-4 jatos</span>
+        </div>
+        <div class="action-step">
+          <span class="action-num">2</span>
+          <span>Repetir cada 20 min (até 3×)</span>
+        </div>
+        <div class="action-step">
+          <span class="action-num">3</span>
+          <span>Sem melhora 2 dias → <strong>médico</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERMELHA -->
+    <div class="zone zone-red">
+      <div class="zone-header">
+        <span class="zone-icon">🚨</span>
+        <span class="zone-title">VERMELHA — Urgência</span>
+      </div>
+      <h4>🔴 Perigo:</h4>
+      <ul>
+        <li>Difícil falar frases</li>
+        <li>Falta de ar intensa</li>
+        <li>Lábios/unhas roxos</li>
+      </ul>
+      <div class="action-box">
+        <h4>🆘 IMEDIATO:</h4>
+        <div class="action-step">
+          <span class="action-num">1</span>
+          <span><span class="dose-inline dose-r">RESGATE</span> 4-6 jatos</span>
+        </div>
+        <div class="action-step">
+          <span class="action-num">2</span>
+          <span>Repetir cada 20 min</span>
+        </div>
+        <div class="action-step">
+          <span class="action-num">3</span>
+          <span><strong>VÁ À EMERGÊNCIA</strong></span>
+        </div>
+      </div>
+      <div class="samu-box">
+        📞 SAMU <span class="samu-num">192</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="triggers-box">
+      <h3>⚡ Meus Gatilhos (marque os seus)</h3>
+      <div class="triggers-grid">
+        <label class="trigger-item"><input type="checkbox"> 🧹 Poeira</label>
+        <label class="trigger-item"><input type="checkbox"> 🦠 Mofo</label>
+        <label class="trigger-item"><input type="checkbox"> 🚬 Fumaça</label>
+        <label class="trigger-item"><input type="checkbox"> 🌸 Perfume</label>
+        <label class="trigger-item"><input type="checkbox"> ❄️ Frio</label>
+        <label class="trigger-item"><input type="checkbox"> 🤧 Gripe</label>
+        <label class="trigger-item"><input type="checkbox"> 🐱 Animais</label>
+        <label class="trigger-item"><input type="checkbox"> 😰 Estresse</label>
+        <label class="trigger-item"><input type="checkbox"> 🏃 Exercício</label>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>💨 Uso de RESGATE por semana:</h3>
+      <div class="threshold-row">
+        <div class="threshold t-green"><div class="num">0-2</div>✅ OK</div>
+        <div class="threshold t-yellow"><div class="num">3-4</div>⚠️ Atenção</div>
+        <div class="threshold t-red"><div class="num">5+</div>🔴 Médico</div>
+      </div>
+      <div class="corticoide-box">
+        <strong>💊 Corticoide oral (se prescrito):</strong><br>
+        Prednisona ____ mg por ____ dias<br>
+        <em>Iniciar na zona amarela/vermelha se orientado</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-appt">
+    <span class="next-appt-icon">📆</span>
+    <span class="next-appt-label">Próxima consulta:</span>
+    <span class="next-appt-field"></span>
+  </div>
+
+  <div class="footer-msg">
+    📌 <strong>Leve este plano para TODAS as consultas e emergências.</strong> Se usou corticoide ou foi à emergência, avise o médico.
+  </div>
+
+  <div class="refs">
+    Baseado em: GINA 2024 • Sociedade Brasileira de Pneumologia e Tisiologia • Ministério da Saúde
+  </div>
+
+  <div class="print-btn"><button onclick="window.print()">🖨️ Imprimir</button></div>
+</div>
+</body>
+</html>
