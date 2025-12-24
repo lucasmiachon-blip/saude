@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunicação Clínica em Asma: Guia Completo v8</title>
+  <style>
+    :root{--bg:#f5f5f5;--card:#fff;--text:#1a1a1a;--muted:#717171;--accent:#2c2c2c;--border:#d1d1d1;--success:#166534;--success-bg:#f0fdf4;--warning:#92400e;--warning-bg:#fffbeb;--info:#1e40af;--info-bg:#eff6ff}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:11px;line-height:1.5;padding:8px}
+    .container{max-width:1000px;margin:0 auto}
+    .header{background:linear-gradient(135deg,#2c2c2c,#404040);color:#fff;padding:16px 20px;border-radius:8px 8px 0 0}
+    .header h1{font-size:18px;margin-bottom:4px}
+    .header p{font-size:11px;opacity:.9}
+    .version{font-size:9px;opacity:.7}
+    .nav{background:#fff;padding:8px;border-bottom:2px solid #2c2c2c;display:flex;flex-wrap:wrap;gap:4px;position:sticky;top:0;z-index:100}
+    .nav-btn{padding:6px 10px;border:1px solid var(--border);background:#fff;border-radius:4px;cursor:pointer;font-size:9px;font-weight:500;color:#4a4a4a}
+    .nav-btn:hover{background:#f0f0f0}
+    .nav-btn.active{background:#2c2c2c;color:#fff}
+    .tab{display:none;padding:12px 0}
+    .tab.active{display:block}
+    .card{background:#fff;border-radius:6px;padding:14px 16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #e5e5e5}
+    .card-title{font-size:13px;font-weight:700;color:#2c2c2c;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2c2c2c}
+    .tool-header{background:linear-gradient(135deg,#fafafa,#f0f0f0);border:2px solid #2c2c2c;border-radius:8px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .tool-header h2{font-size:16px;color:#2c2c2c;margin-bottom:4px}
+    .tool-header p{font-size:11px;color:#4a4a4a}
+    .metric{display:flex;flex-direction:column;align-items:center;padding:8px 14px;background:var(--success-bg);border:1px solid #86efac;border-radius:6px}
+    .metric .val{font-size:16px;font-weight:700;color:var(--success)}
+    .metric .lbl{font-size:8px;color:var(--success);text-transform:uppercase;text-align:center}
+    .evidence{background:var(--success-bg);border:1px solid #86efac;border-radius:6px;padding:12px 14px;margin:10px 0}
+    .evidence-title{font-weight:600;font-size:11px;color:var(--success);margin-bottom:8px}
+    .intro{background:linear-gradient(135deg,#f8f8f8,#efefef);border:1px solid var(--border);border-left:4px solid #2c2c2c;border-radius:0 6px 6px 0;padding:14px 16px;margin-bottom:12px}
+    .intro h3{font-size:13px;color:#2c2c2c;margin-bottom:8px}
+    .intro p{font-size:11px;margin-bottom:8px;color:#4a4a4a}
+    table{width:100%;border-collapse:collapse;font-size:10px;margin:8px 0}
+    th,td{padding:8px 10px;text-align:left;border:1px solid #e5e5e5}
+    th{background:#2c2c2c;color:#fff;font-weight:600}
+    tr:nth-child(even){background:#f0f0f0}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .script{background:var(--warning-bg);border:1px solid #fcd34d;border-radius:4px;padding:8px 12px;font-style:italic;color:var(--warning);margin:6px 0;font-size:11px}
+    .script::before{content:"💬 "}
+    .alert{padding:10px 14px;border-radius:4px;margin:10px 0;font-size:11px}
+    .alert-key{background:var(--info-bg);border:1px solid #93c5fd;color:var(--info)}
+    .alert-warning{background:var(--warning-bg);border:1px solid #fcd34d;color:var(--warning)}
+    .alert-success{background:var(--success-bg);border:1px solid #86efac;color:var(--success)}
+    .timeline{position:relative;padding-left:24px;margin:12px 0}
+    .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:#d1d1d1}
+    .tl-item{position:relative;padding:10px 0 10px 16px;border-bottom:1px dashed #e5e5e5}
+    .tl-item:last-child{border-bottom:none}
+    .tl-item::before{content:'';position:absolute;left:-22px;top:14px;width:10px;height:10px;border-radius:50%;background:#2c2c2c;border:2px solid #fff;box-shadow:0 0 0 2px #2c2c2c}
+    .tl-step{font-weight:700;font-size:12px;color:#2c2c2c;margin-bottom:4px}
+    .tl-time{font-size:9px;color:#717171;margin-bottom:2px}
+    .acronym{display:flex;justify-content:center;gap:8px;margin:12px 0}
+    .acronym span{width:36px;height:36px;background:#2c2c2c;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+    .tech-box{background:#fafafa;border:1px solid #e5e5e5;border-radius:4px;padding:12px 14px;margin:10px 0}
+    .tech-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .tech-title{font-size:12px;font-weight:600}
+    .tech-title .letter{background:#2c2c2c;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px}
+    .ev-metric{background:var(--success-bg);color:var(--success);padding:2px 8px;border-radius:10px;font-size:9px;font-weight:600}
+    .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+    .do-box{padding:12px;border-radius:6px;font-size:10px;background:var(--success-bg);border:1px solid #86efac}
+    .do-box h4{color:var(--success);margin-bottom:8px;font-size:11px}
+    .do-box h4::before{content:"✓ "}
+    .dont-box{padding:12px;border-radius:6px;font-size:10px;background:#fef2f2;border:1px solid #fecaca}
+    .dont-box h4{color:#991b1b;margin-bottom:8px;font-size:11px}
+    .dont-box h4::before{content:"✗ "}
+    .do-box ul,.dont-box ul{margin-left:16px}
+    .do-box li,.dont-box li{margin-bottom:4px}
+    .strategy{border:1px solid var(--border);border-radius:6px;padding:12px;margin:8px 0;background:#fff}
+    .strategy h4{font-size:11px;color:#2c2c2c;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e5e5e5}
+    .matrix{display:grid;grid-template-columns:auto 1fr 1fr;gap:1px;background:var(--border);border-radius:4px;overflow:hidden;font-size:10px;margin:10px 0}
+    .matrix>div{background:#fff;padding:8px 10px}
+    .matrix .hdr{background:#2c2c2c;color:#fff;font-weight:600;text-align:center}
+    .matrix .row-hdr{background:#f0f0f0;font-weight:600}
+    .nnt{display:inline-flex;flex-direction:column;align-items:center;padding:10px 18px;background:var(--success-bg);border:1px solid #86efac;border-radius:6px;margin:4px}
+    .nnt .val{font-size:22px;font-weight:700;color:var(--success)}
+    .nnt .lbl{font-size:8px;color:var(--success);text-transform:uppercase;text-align:center}
+    .checklist{list-style:none;padding-left:0}
+    .checklist li{padding:4px 0 4px 24px;position:relative;font-size:10px}
+    .checklist li::before{content:"☐";position:absolute;left:0;color:#2c2c2c;font-size:14px}
+    .tier1{background:#2c2c2c;color:#fff;padding:2px 6px;border-radius:3px;font-size:8px;font-weight:600;margin-right:4px}
+    .form-box{border:2px solid #2c2c2c;border-radius:6px;padding:14px 16px;margin:12px 0;background:#fff}
+    .form-header{background:#2c2c2c;color:#fff;margin:-14px -16px 14px -16px;padding:10px 16px;font-weight:600;font-size:12px}
+    .form-preface{background:#f8f8f8;padding:10px 12px;border-radius:4px;font-style:italic;font-size:10px;margin-bottom:12px;color:#4a4a4a}
+    .likert{display:grid;grid-template-columns:2fr repeat(5,1fr);gap:1px;background:#e5e5e5;font-size:10px;margin:10px 0}
+    .likert>div{background:#fff;padding:6px 8px;text-align:center}
+    .likert .item{text-align:left}
+    .likert .scale-hdr{background:#f0f0f0;font-weight:600;font-size:8px}
+    .form-footer{font-size:9px;color:#717171;margin-top:10px;padding-top:10px;border-top:1px dashed #e5e5e5}
+    .int-card{border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin:12px 0;background:#fff}
+    .int-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #e5e5e5}
+    .int-title{font-weight:600;font-size:12px}
+    .int-effect{background:var(--success-bg);border:1px solid #86efac;border-radius:4px;padding:4px 10px;font-size:11px;font-weight:600;color:var(--success)}
+    .int-why{font-size:11px;color:#4a4a4a;margin-bottom:10px}
+    .int-evidence{background:#f0f0f0;border-radius:4px;padding:10px 12px;font-size:10px}
+    .int-source{font-size:9px;color:#717171;margin-top:8px}
+    .print-btn{position:fixed;bottom:14px;right:14px;background:#2c2c2c;color:#fff;border:none;padding:10px 16px;border-radius:4px;font-size:11px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+    @media print{body{background:#fff;padding:6px;font-size:10px}.nav,.print-btn{display:none!important}.tab{display:block!important;page-break-before:always}.tab:first-of-type{page-break-before:avoid}.card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}.header,th{background:#2c2c2c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+    @media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}.tool-header{flex-direction:column}.do-dont{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Comunicação Clínica em Asma: Guia Completo de Ferramentas Baseadas em Evidências</h1>
+    <p>8 ferramentas de comunicação com fundamentação científica para melhorar adesão e desfechos</p>
+    <div class="version">Versão 8 • Dezembro 2025 • Fontes Tier 1: Meta-análises, Revisões Sistemáticas, GINA, NICE, WHO</div>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn active" onclick="showTab('visao')">📋 Visão Geral</button>
+    <button class="nav-btn" onclick="showTab('em')">🎯 Entrevista Motivacional</button>
+    <button class="nav-btn" onclick="showTab('empatia')">❤️ Empatia Clínica</button>
+    <button class="nav-btn" onclick="showTab('ice')">💭 ICE</button>
+    <button class="nav-btn" onclick="showTab('ata')">🔄 Ask-Tell-Ask</button>
+    <button class="nav-btn" onclick="showTab('teachback')">✓ Teach-Back</button>
+    <button class="nav-btn" onclick="showTab('nv')">👁️ Não-Verbal</button>
+    <button class="nav-btn" onclick="showTab('linguagem')">📝 Linguagem Simples</button>
+    <button class="nav-btn" onclick="showTab('risco')">📊 Comunicação Risco</button>
+    <button class="nav-btn" onclick="showTab('deteccao')">🔍 Detecção Não-Adesão</button>
+    <button class="nav-btn" onclick="showTab('formularios')">📄 Formulários</button>
+    <button class="nav-btn" onclick="showTab('referencias')">📚 Referências</button>
+  </div>
+
+  <!-- VISÃO GERAL -->
+  <div id="visao" class="tab active">
+    <div class="intro">
+      <h3>Por que este guia existe?</h3>
+      <p>Técnicas de comunicação costumam ser vistas como "soft skills" sem evidência sólida. <strong>Este guia mostra que são intervenções com efeito mensurável</strong> — tão quantificáveis quanto qualquer medicamento.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">O Problema: Por que comunicação importa em Asma</div>
+      <div class="grid-3">
+        <div class="metric"><div class="val">30-50%</div><div class="lbl">Não-adesão em Asma</div></div>
+        <div class="metric"><div class="val">80%</div><div class="lbl">Técnica inalatória incorreta</div></div>
+        <div class="metric"><div class="val">50%</div><div class="lbl">Adesão média crônicas</div></div>
+      </div>
+      <p style="font-size:10px;color:#717171;margin-top:10px;text-align:center">Fontes: GINA 2024-2025, WHO Adherence Report 2003</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">As 8 Ferramentas e Suas Evidências</div>
+      <table>
+        <tr><th>Ferramenta</th><th>O que é</th><th>Evidência Principal</th><th>Effect Size</th></tr>
+        <tr><td><strong>Entrevista Motivacional</strong></td><td>Evocar motivação intrínseca para mudança</td><td>Lundahl 2010 (119 RCTs)</td><td><span class="ev-metric">g=0.28</span></td></tr>
+        <tr><td><strong>Empatia Clínica</strong></td><td>Compreender e comunicar compreensão</td><td>Lelorain 2023 (55 estudos)</td><td><span class="ev-metric">r=0.23</span></td></tr>
+        <tr><td><strong>ICE</strong></td><td>Explorar Ideas, Concerns, Expectations</td><td>Matthys 2009 (613 consultas)</td><td><span class="ev-metric">↓prescrições</span></td></tr>
+        <tr><td><strong>Ask-Tell-Ask</strong></td><td>Perguntar→Informar→Verificar</td><td>AAFP 2017, Oncotalk</td><td><span class="ev-metric">Best practice</span></td></tr>
+        <tr><td><strong>Teach-Back</strong></td><td>Verificar compreensão pedindo explicação</td><td>Oh 2021 (meta-análise)</td><td><span class="ev-metric">OR=0.55</span></td></tr>
+        <tr><td><strong>Comunicação Não-Verbal</strong></td><td>Contato visual, postura, tom de voz</td><td>Howick 2018</td><td><span class="ev-metric">p<0.001</span></td></tr>
+        <tr><td><strong>Linguagem Simples</strong></td><td>Evitar jargão, usar termos acessíveis</td><td>Miller 2016 (220 artigos)</td><td><span class="ev-metric">r=0.14</span></td></tr>
+        <tr><td><strong>Comunicação de Risco</strong></td><td>Apresentar riscos de forma compreensível</td><td>Zipkin 2014 (91 estudos)</td><td><span class="ev-metric">ARR>RRR</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Como Integrar na Consulta de 10 Minutos</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">0-2 min • ABERTURA</div>
+          <div class="tl-step">Engajar + ICE</div>
+          <p>Estabeleça rapport. Explore Ideas, Concerns, Expectations. Use comunicação não-verbal.</p>
+          <div class="script">"Como tem sido usar o tratamento? O que te preocupa sobre a asma?"</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">2-5 min • EXPLORAÇÃO</div>
+          <div class="tl-step">OARS + Empatia + Detecção</div>
+          <p>Use perguntas abertas. Reflita sentimentos. Detecte não-adesão. Explore crenças.</p>
+          <div class="script">"O que dificulta usar todo dia? Algumas pessoas se preocupam com corticoide..."</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">5-8 min • INFORMAÇÃO</div>
+          <div class="tl-step">Ask-Tell-Ask + Linguagem Simples</div>
+          <p>Pergunte o que já sabe. Informe com linguagem simples. Use risco absoluto.</p>
+          <div class="script">"O que você sabe sobre como o inalador funciona?"</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">8-10 min • FECHAMENTO</div>
+          <div class="tl-step">Teach-Back + Planejamento</div>
+          <p>Verifique compreensão. Faça plano concreto. Evoque compromisso.</p>
+          <div class="script">"Para eu saber se expliquei bem — como você vai usar em casa?"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Glossário de Effect Sizes</div>
+      <table>
+        <tr><th>Métrica</th><th>Interpretação</th><th>Referência</th></tr>
+        <tr><td><strong>g ou d (Cohen)</strong></td><td>Diferença padronizada entre grupos</td><td>0.2=pequeno, 0.5=médio, 0.8=grande</td></tr>
+        <tr><td><strong>OR (Odds Ratio)</strong></td><td>Razão de chances entre grupos</td><td>>1=benefício, <1=proteção</td></tr>
+        <tr><td><strong>r (correlação)</strong></td><td>Força da associação</td><td>0.1=fraca, 0.3=moderada, 0.5=forte</td></tr>
+        <tr><td><strong>NNT</strong></td><td>Número necessário para tratar</td><td>Quantos pacientes para 1 benefício</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ENTREVISTA MOTIVACIONAL -->
+  <div id="em" class="tab">
+    <div class="tool-header">
+      <div>
+        <h2>🎯 Entrevista Motivacional</h2>
+        <p>Um estilo de comunicação colaborativo e orientado por objetivos, com atenção particular à linguagem de mudança</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <div class="metric"><div class="val">g=0.28</div><div class="lbl">Effect Size 119 RCTs</div></div>
+        <div class="metric"><div class="val">r=0.55</div><div class="lbl">Change Talk → Desfecho</div></div>
+      </div>
+    </div>
+
+    <div class="intro">
+      <h3>O que é Entrevista Motivacional?</h3>
+      <p><strong>Definição (Miller & Rollnick, 2013):</strong> "Um estilo de comunicação colaborativo e orientado por objetivos, com atenção particular à linguagem de mudança. Projetado para fortalecer a motivação pessoal e o compromisso com um objetivo específico, elicitando e explorando as próprias razões da pessoa para mudar."</p>
+      <p><strong>Princípio central:</strong> A motivação para mudar não é imposta de fora — é evocada de dentro do paciente. Seu papel não é convencer, é facilitar que o paciente se convença.</p>
+      <div class="evidence">
+        <div class="evidence-title">✓ Evidência</div>
+        <p>Meta-análise de 119 RCTs (Lundahl 2010, N>14.000): EM tem effect size <strong>g=0.28</strong> — efeito pequeno-médio, consistente. Em 75% dos estudos, EM foi igual ou superior ao comparador.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Os 4 Processos da EM</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">~1-2 min</div>
+          <div class="tl-step">1. ENGAJAR</div>
+          <p>Estabelecer vínculo e aliança terapêutica. Ouvir antes de falar.</p>
+          <div class="script">"Como tem sido usar o tratamento no dia a dia?"</div>
+          <p style="font-size:9px;color:#717171;margin-top:6px"><strong>Por quê:</strong> Aliança terapêutica explica até 60% da variância em desfechos (Magill 2018).</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">~1 min</div>
+          <div class="tl-step">2. FOCAR</div>
+          <p>Definir agenda colaborativa. O que seria mais útil discutir?</p>
+          <div class="script">"O que seria mais útil conversarmos hoje?"</div>
+          <p style="font-size:9px;color:#717171;margin-top:6px"><strong>Por quê:</strong> Autonomia do paciente é pilar do "espírito" da EM. Agenda imposta gera resistência.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">~3-4 min</div>
+          <div class="tl-step">3. EVOCAR</div>
+          <p>Elicitar change talk — falas do paciente a favor da mudança. Fase mais importante. Usar OARS.</p>
+          <div class="script">"O que te faria querer manter o tratamento diário?"</div>
+          <p style="font-size:9px;color:#717171;margin-top:6px"><strong>Por quê:</strong> Change talk prediz mudança com r=0.55 (Magill 2018).</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">~2 min</div>
+          <div class="tl-step">4. PLANEJAR</div>
+          <p>Consolidar compromisso. Plano concreto. Verificar compreensão com teach-back.</p>
+          <div class="script">"Como você pretende encaixar isso na sua rotina?"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Habilidades OARS — As 4 Ferramentas Centrais</div>
+      <div class="acronym">
+        <span>O</span><span>A</span><span>R</span><span>S</span>
+      </div>
+
+      <div class="tech-box">
+        <div class="tech-header">
+          <strong class="tech-title"><span class="letter">O</span>pen Questions — Perguntas Abertas</strong>
+          <span class="ev-metric">2.4x mais informação</span>
+        </div>
+        <p style="font-size:11px;margin-bottom:8px"><strong>O que é:</strong> Perguntas que não podem ser respondidas com "sim" ou "não".</p>
+        <p style="font-size:11px;margin-bottom:8px"><strong>Por que funciona:</strong> Heritage & Robinson (2006): perguntas abertas geram respostas de 27.1s vs fechadas 11.3s — mais que o dobro de informação.</p>
+        <table style="font-size:10px">
+          <tr><th>Em vez de (fechada)</th><th>Prefira (aberta)</th></tr>
+          <tr><td>"Você está usando o inalador?"</td><td>"Como tem sido usar o inalador?"</td></tr>
+          <tr><td>"Você tem dificuldade?"</td><td>"O que dificulta manter o uso diário?"</td></tr>
+          <tr><td>"Entendeu?"</td><td>"O que ficou de dúvida?"</td></tr>
+        </table>
+      </div>
+
+      <div class="tech-box">
+        <div class="tech-header">
+          <strong class="tech-title"><span class="letter">A</span>ffirmations — Afirmações</strong>
+          <span class="ev-metric">↑ Autoeficácia</span>
+        </div>
+        <p style="font-size:11px;margin-bottom:8px"><strong>O que é:</strong> Reconhecer esforços, forças e valores do paciente. Não é elogio vazio.</p>
+        <p style="font-size:11px;margin-bottom:8px"><strong>Por que funciona:</strong> Afirmações aumentam autoeficácia (Bandura), preditor de mudança comportamental.</p>
+        <table style="font-size:10px">
+          <tr><th>Situação</th><th>Afirmação</th></tr>
+          <tr><td>Veio à consulta apesar de dificuldades</td><td>"Você fez um esforço real para estar aqui hoje."</td></tr>
+          <tr><td>Admite não-adesão honestamente</td><td>"Agradeço sua honestidade. Isso me ajuda a ajudar você."</td></tr>
+        </table>
+      </div>
+
+      <div class="tech-box">
+        <div class="tech-header">
+          <strong class="tech-title"><span class="letter">R</span>eflections — Reflexões</strong>
+          <span class="ev-metric">Central para EM</span>
+        </div>
+        <p style="font-size:11px;margin-bottom:8px"><strong>O que é:</strong> Espelhar o que o paciente disse — conteúdo, sentimento, ou significado implícito.</p>
+        <p style="font-size:11px;margin-bottom:8px"><strong>Por que funciona:</strong> Reflexões são a habilidade mais distintiva da EM. Permitem que o paciente se ouça.</p>
+        <table style="font-size:10px">
+          <tr><th>Tipo</th><th>Paciente diz</th><th>Reflexão</th></tr>
+          <tr><td><strong>Simples</strong></td><td>"É difícil lembrar"</td><td>"Lembrar é um desafio."</td></tr>
+          <tr><td><strong>Dupla face</strong></td><td>"Sei que deveria, mas..."</td><td>"Por um lado você sabe que é importante, por outro é difícil."</td></tr>
+          <tr><td><strong>Sentimento</strong></td><td>"Minha mãe fica no meu pé"</td><td>"Parece frustrante ter essa pressão."</td></tr>
+        </table>
+      </div>
+
+      <div class="tech-box">
+        <div class="tech-header">
+          <strong class="tech-title"><span class="letter">S</span>ummaries — Resumos</strong>
+          <span class="ev-metric">Organiza + Transiciona</span>
+        </div>
+        <p style="font-size:11px;margin-bottom:8px"><strong>O que é:</strong> Juntar vários pontos que o paciente mencionou. Mostra que você ouviu.</p>
+        <div class="script">"Deixa eu ver se entendi: você sabe que o inalador é importante, especialmente por causa dos seus filhos. Ao mesmo tempo, é difícil lembrar de manhã. E você tem dúvidas se precisa usar todo dia. É isso?"</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Régua de Prontidão</div>
+      <div class="grid-2">
+        <div class="strategy">
+          <h4>Pergunta Importância</h4>
+          <div class="script">"De 0 a 10, quão importante é para você usar o inalador todo dia?"</div>
+          <p style="font-size:10px;margin-top:6px"><strong>Follow-up se <10:</strong> "Por que [número] e não zero?"</p>
+        </div>
+        <div class="strategy">
+          <h4>Pergunta Confiança</h4>
+          <div class="script">"De 0 a 10, quão confiante você está de conseguir usar todo dia?"</div>
+          <p style="font-size:10px;margin-top:6px"><strong>Follow-up se <10:</strong> "O que precisaria para subir para [número+1]?"</p>
+        </div>
+      </div>
+      <div class="alert alert-key">
+        <strong>Dica:</strong> A pergunta "Por que X e não zero?" evoca change talk automaticamente. Nunca pergunte "Por que não 10?" — isso evoca sustain talk (razões contra).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Change Talk — DARN-CAT</div>
+      <div class="evidence">
+        <div class="evidence-title">✓ Evidência do Mecanismo</div>
+        <p>Magill et al. (2018) meta-análise: change talk correlaciona com desfecho <strong>r=0.55</strong>. Quanto mais o paciente fala a favor da mudança, maior a probabilidade de mudança real.</p>
+      </div>
+      <table style="margin-top:12px">
+        <tr><th colspan="4" style="background:#404040">DARN — Preparatórios</th></tr>
+        <tr><td><strong>D</strong>esejo</td><td>"Eu quero..."</td><td>"Quero poder brincar com meus netos sem falta de ar"</td><td style="font-size:9px;color:#717171">Indica vontade</td></tr>
+        <tr><td><strong>A</strong>bilidade</td><td>"Eu consigo..."</td><td>"Acho que consigo lembrar se colocar alarme"</td><td style="font-size:9px;color:#717171">Indica autoeficácia</td></tr>
+        <tr><td><strong>R</strong>azões</td><td>"Porque..."</td><td>"Meus filhos precisam de mim saudável"</td><td style="font-size:9px;color:#717171">Indica motivação</td></tr>
+        <tr><td><strong>N</strong>ecessidade</td><td>"Eu preciso..."</td><td>"Preciso parar de ir à emergência"</td><td style="font-size:9px;color:#717171">Indica urgência</td></tr>
+        <tr><th colspan="4" style="background:#166534">CAT — Mobilizadores (mais preditivos)</th></tr>
+        <tr><td><strong>C</strong>ommitment</td><td>"Eu vou..."</td><td>"Vou usar todo dia a partir de amanhã"</td><td style="font-size:9px;color:#717171">Indica intenção firme</td></tr>
+        <tr><td><strong>A</strong>ctivation</td><td>"Estou pronto..."</td><td>"Estou disposto a tentar por um mês"</td><td style="font-size:9px;color:#717171">Indica prontidão</td></tr>
+        <tr><td><strong>T</strong>aking steps</td><td>"Eu já..."</td><td>"Já coloquei o inalador do lado da escova"</td><td style="font-size:9px;color:#717171">Indica ação iniciada</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Explorar Crenças — Framework Necessity-Concerns</div>
+      <div class="evidence">
+        <div class="evidence-title">✓ Evidência Robusta</div>
+        <p>Horne et al. (2013): <strong>94 estudos, 25.072 pacientes</strong>. Necessity alta: OR=1.74 para adesão. Concerns alta: OR=0.50 (corta adesão pela metade).</p>
+      </div>
+      <table style="margin-top:10px">
+        <tr><th>Para explorar...</th><th>Pergunte</th></tr>
+        <tr><td><strong>Necessity</strong></td><td>"O que você acha — precisa mesmo usar todo dia, ou só quando tem sintoma?"</td></tr>
+        <tr><td><strong>Concerns</strong></td><td>"Algumas pessoas se preocupam com efeitos de corticoide. E você?"</td></tr>
+      </table>
+      <div class="matrix" style="margin-top:12px">
+        <div class="hdr"></div><div class="hdr">Alta Necessidade</div><div class="hdr">Baixa Necessidade</div>
+        <div class="row-hdr">Baixa Preocupação</div><div><strong>Aceita</strong> — Pronto para aderir</div><div><strong>Indiferente</strong> — Precisa entender benefício</div>
+        <div class="row-hdr">Alta Preocupação</div><div><strong>Ambivalente</strong> — Abordar concerns</div><div><strong>Cético</strong> — Prioridade máxima</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Armadilhas — O que NÃO fazer</div>
+      <div class="do-dont">
+        <div class="dont-box">
+          <h4>Evite</h4>
+          <ul>
+            <li><strong>Reflexo de correção:</strong> Apressar-se para corrigir</li>
+            <li><strong>Fazer pela pessoa:</strong> Dar soluções prontas</li>
+            <li><strong>Argumentar:</strong> Tentar convencer com lógica</li>
+            <li><strong>Perguntar "Por que não 10?":</strong> Evoca sustain talk</li>
+          </ul>
+        </div>
+        <div class="do-box">
+          <h4>Prefira</h4>
+          <ul>
+            <li><strong>Escutar primeiro:</strong> Entender antes de agir</li>
+            <li><strong>Evocar:</strong> Perguntar o que O PACIENTE pensa</li>
+            <li><strong>Rolar com resistência:</strong> Não confrontar</li>
+            <li><strong>Perguntar "Por que X e não zero?"</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Checklist da Consulta com EM</div>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:11px;font-weight:600;margin-bottom:8px">Habilidades usadas:</p>
+          <ul class="checklist">
+            <li>Mais perguntas abertas que fechadas</li>
+            <li>Pelo menos 2-3 reflexões</li>
+            <li>Afirmei algo positivo genuíno</li>
+            <li>Fiz pelo menos um resumo</li>
+            <li>Pedi permissão antes de informar</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:11px;font-weight:600;margin-bottom:8px">Processo respeitado:</p>
+          <ul class="checklist">
+            <li>Evoquei (não impus) soluções</li>
+            <li>Respeitei autonomia do paciente</li>
+            <li>Identifiquei e refleti change talk</li>
+            <li>Explorei crenças sobre medicamento</li>
+            <li>Fiz teach-back no final</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
