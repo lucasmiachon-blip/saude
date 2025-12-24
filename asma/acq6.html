@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACQ-6 — Questionário de Controle da Asma</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #555;
+  --accent: #2563eb;
+  --green: #16a34a;
+  --yellow: #ca8a04;
+  --red: #dc2626;
+  --paper: #fafafa;
+  --card: #fff;
+  --line: #e5e5e5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 12px;
+}
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 16px 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+.subtitle { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+.patient-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px;
+  gap: 8px;
+  font-size: 10px;
+}
+.field { border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+.field-label { font-weight: 600; font-size: 9px; color: var(--ink-soft); }
+
+.instructions {
+  background: #eff6ff;
+  border-left: 3px solid var(--accent);
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  font-size: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+th, td { border: 1px solid var(--line); padding: 6px 4px; text-align: center; }
+th { background: #f5f5f5; font-weight: 600; font-size: 10px; }
+.q-cell { text-align: left; padding-left: 8px; width: 45%; }
+.q-num { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  width: 18px; 
+  height: 18px; 
+  background: var(--accent); 
+  color: white; 
+  border-radius: 50%; 
+  font-weight: 700; 
+  font-size: 10px;
+  margin-right: 6px;
+}
+.scale-hint { font-size: 8px; color: var(--ink-soft); display: block; margin-top: 2px; }
+.score-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.score-circle:hover { border-color: var(--accent); background: #eff6ff; }
+
+.calc-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.calc-box {
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+}
+.calc-box h3 { font-size: 11px; margin-bottom: 6px; }
+.calc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+.calc-input {
+  width: 50px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.result-box {
+  background: #f0fdf4;
+  border: 2px solid var(--green);
+  text-align: center;
+  padding: 12px;
+}
+.result-score { font-size: 28px; font-weight: 700; color: var(--green); }
+.result-label { font-size: 10px; color: var(--ink-soft); }
+
+.interpretation {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.interp-box {
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+.interp-green { background: #dcfce7; border: 2px solid var(--green); }
+.interp-yellow { background: #fef9c3; border: 2px solid var(--yellow); }
+.interp-red { background: #fee2e2; border: 2px solid var(--red); }
+.interp-range { font-size: 14px; font-weight: 700; }
+.interp-label { font-size: 9px; margin-top: 2px; }
+
+.stats-footer {
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  font-size: 9px;
+}
+.stat { text-align: center; }
+.stat-value { font-weight: 700; font-size: 12px; color: var(--accent); }
+.stat-label { color: var(--ink-soft); }
+
+.footer-refs {
+  margin-top: 10px;
+  font-size: 8px;
+  color: var(--ink-soft);
+  text-align: center;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+
+.print-btn {
+  text-align: right;
+  margin-top: 10px;
+}
+button {
+  background: var(--ink);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { opacity: 0.9; }
+
+@media print {
+  body { padding: 0; }
+  .page { box-shadow: none; padding: 10px; }
+  .print-btn { display: none; }
+  .score-circle { border: 1px solid #333; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div>
+      <h1>📋 ACQ-6 — Questionário de Controle da Asma</h1>
+      <div class="subtitle">Asthma Control Questionnaire (6 itens, sem espirometria) • Última semana</div>
+    </div>
+    <div class="patient-info">
+      <div><span class="field-label">Nome:</span><div class="field"></div></div>
+      <div><span class="field-label">Data:</span><div class="field"></div></div>
+      <div><span class="field-label">Consulta nº:</span><div class="field"></div></div>
+    </div>
+  </header>
+
+  <div class="instructions">
+    <strong>Instruções:</strong> Responda sobre a <strong>última semana</strong>. Circule UM número (0–6) para cada pergunta. 
+    Seja honesto — não há resposta certa ou errada. Suas respostas ajudam a ajustar o tratamento.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="q-cell">Pergunta</th>
+        <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="q-cell">
+          <span class="q-num">1</span>
+          Em média, com que frequência você <strong>acordou durante a noite</strong> por causa da asma?
+          <span class="scale-hint">0 = Nunca → 6 = Incapaz de dormir</span>
+        </td>
+        <td><span class="score-circle">0</span></td>
+        <td><span class="score-circle">1</span></td>
+        <td><span class="score-circle">2</span></td>
+        <td><span class="score-circle">3</span></td>
+        <td><span class="score-circle">4</span></td>
+        <td><span class="score-circle">5</span></td>
+        <td><span class="score-circle">6</span></td>
+      </tr>
+      <tr>
+        <td class="q-cell">
+          <span class="q-num">2</span>
+          Quão graves foram seus sintomas de asma <strong>quando acordou de manhã</strong>?
+          <span class="scale-hint">0 = Sem sintomas → 6 = Muito graves</span>
+        </td>
+        <td><span class="score-circle">0</span></td>
+        <td><span class="score-circle">1</span></td>
+        <td><span class="score-circle">2</span></td>
+        <td><span class="score-circle">3</span></td>
+        <td><span class="score-circle">4</span></td>
+        <td><span class="score-circle">5</span></td>
+        <td><span class="score-circle">6</span></td>
+      </tr>
+      <tr>
+        <td class="q-cell">
+          <span class="q-num">3</span>
+          Quão <strong>limitado</strong> você esteve nas suas <strong>atividades</strong> por causa da asma?
+          <span class="scale-hint">0 = Nada limitado → 6 = Totalmente limitado</span>
+        </td>
+        <td><span class="score-circle">0</span></td>
+        <td><span class="score-circle">1</span></td>
+        <td><span class="score-circle">2</span></td>
+        <td><span class="score-circle">3</span></td>
+        <td><span class="score-circle">4</span></td>
+        <td><span class="score-circle">5</span></td>
+        <td><span class="score-circle">6</span></td>
+      </tr>
+      <tr>
+        <td class="q-cell">
+          <span class="q-num">4</span>
+          Quanta <strong>falta de ar</strong> você sentiu por causa da asma?
+          <span class="scale-hint">0 = Nenhuma → 6 = Muita</span>
+        </td>
+        <td><span class="score-circle">0</span></td>
+        <td><span class="score-circle">1</span></td>
+        <td><span class="score-circle">2</span></td>
+        <td><span class="score-circle">3</span></td>
+        <td><span class="score-circle">4</span></td>
+        <td><span class="score-circle">5</span></td>
+        <td><span class="score-circle">6</span></td>
+      </tr>
+      <tr>
+        <td class="q-cell">
+          <span class="q-num">5</span>
+          Quanto tempo você teve <strong>chiado</strong> (sibilo)?
+          <span class="scale-hint">0 = Nunca → 6 = O tempo todo</span>
+        </td>
+        <td><span class="score-circle">0</span></td>
+        <td><span class="score-circle">1</span></td>
+        <td><span class="score-circle">2</span></td>
+        <td><span class="score-circle">3</span></td>
+        <td><span class="score-circle">4</span></td>
+        <td><span class="score-circle">5</span></td>
+        <td><span class="score-circle">6</span></td>
+      </tr>
+      <tr>
+        <td class="q-cell">
+          <span class="q-num">6</span>
+          Quantos <strong>jatos de broncodilatador de resgate</strong> você usou por dia?
+          <span class="scale-hint">0 = Nenhum → 6 = >16 jatos/dia</span>
+        </td>
+        <td><span class="score-circle">0</span></td>
+        <td><span class="score-circle">1</span></td>
+        <td><span class="score-circle">2</span></td>
+        <td><span class="score-circle">3</span></td>
+        <td><span class="score-circle">4</span></td>
+        <td><span class="score-circle">5</span></td>
+        <td><span class="score-circle">6</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="calc-section">
+    <div class="calc-box">
+      <h3>📊 Cálculo do Score</h3>
+      <div class="calc-row">Soma dos 6 itens: <input type="text" class="calc-input" placeholder="__"> ÷ 6 =</div>
+      <div class="calc-row"><strong>Score médio:</strong> <input type="text" class="calc-input" placeholder="__"></div>
+    </div>
+    <div class="calc-box result-box">
+      <div class="result-label">RESULTADO</div>
+      <div class="result-score">___</div>
+      <div class="result-label">pontos</div>
+    </div>
+  </div>
+
+  <div class="interpretation">
+    <div class="interp-box interp-green">
+      <div class="interp-range">< 0,75</div>
+      <div class="interp-label">✅ Bem controlada</div>
+    </div>
+    <div class="interp-box interp-yellow">
+      <div class="interp-range">0,75 – 1,5</div>
+      <div class="interp-label">⚠️ Zona cinzenta</div>
+    </div>
+    <div class="interp-box interp-red">
+      <div class="interp-range">> 1,5</div>
+      <div class="interp-label">🔴 Mal controlada</div>
+    </div>
+  </div>
+
+  <div class="stats-footer">
+    <div class="stat">
+      <div class="stat-value">MCID = 0,5</div>
+      <div class="stat-label">Diferença mínima clinicamente importante</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">α = 0,85+</div>
+      <div class="stat-label">Consistência interna (Cronbach)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">ICC = 0,90</div>
+      <div class="stat-label">Reprodutibilidade teste-reteste</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">1 semana</div>
+      <div class="stat-label">Período de referência</div>
+    </div>
+  </div>
+
+  <div class="footer-refs">
+    Juniper EF et al. Eur Respir J 1999;14:902-7 • Respir Med 2006;100:616-21 • GINA 2024 • 
+    ACQ © QOL Technologies Ltd — <a href="https://www.qoltech.co.uk">qoltech.co.uk</a>
+  </div>
+
+  <div class="print-btn"><button onclick="window.print()">🖨️ Imprimir</button></div>
+</div>
+</body>
+</html>
