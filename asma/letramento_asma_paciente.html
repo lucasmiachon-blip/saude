@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Letramento em Asma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      line-height: 1.4;
+      color: #1f2937;
+      background: white;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 8mm;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left h1 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .header-left p {
+      font-size: 9px;
+      opacity: 0.9;
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .header-right .field-label {
+      font-size: 8px;
+      opacity: 0.8;
+    }
+
+    .header-right .field-line {
+      display: inline-block;
+      width: 90px;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      margin-left: 4px;
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 6px;
+      padding-bottom: 3px;
+      border-bottom: 2px solid #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title .icon {
+      font-size: 14px;
+    }
+
+    /* CARDS */
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    /* O QUE É ASMA */
+    .asma-explain {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .asma-box {
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .asma-box.problem {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .asma-box.solution {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .asma-box h3 {
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .asma-box.problem h3 { color: #dc2626; }
+    .asma-box.solution h3 { color: #16a34a; }
+
+    .asma-box p {
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    .escudo-visual {
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .escudo-visual .escudo {
+      font-size: 24px;
+    }
+
+    .escudo-visual .caption {
+      font-size: 8px;
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    /* MEDICAMENTOS */
+    .meds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .med-card {
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .med-card.alenia {
+      background: #eff6ff;
+      border: 2px solid #3b82f6;
+    }
+
+    .med-card.salbutamol {
+      background: #fff7ed;
+      border: 2px solid #f97316;
+    }
+
+    .med-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .med-name {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .med-card.alenia .med-name { color: #1d4ed8; }
+    .med-card.salbutamol .med-name { color: #ea580c; }
+
+    .med-badges {
+      display: flex;
+      gap: 4px;
+    }
+
+    .badge {
+      font-size: 7px;
+      padding: 2px 5px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .badge.control { background: #dbeafe; color: #1e40af; }
+    .badge.relief { background: #dcfce7; color: #166534; }
+    .badge.relief-only { background: #ffedd5; color: #9a3412; }
+
+    .med-desc {
+      font-size: 8px;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .med-technique {
+      background: white;
+      padding: 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .med-technique h4 {
+      font-size: 8px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .technique-steps {
+      list-style: none;
+      font-size: 8px;
+    }
+
+    .technique-steps li {
+      padding: 2px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .technique-steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .med-note {
+      font-size: 8px;
+      font-style: italic;
+      color: #6b7280;
+    }
+
+    /* GATILHOS */
+    .triggers-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .trigger-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      font-size: 8px;
+    }
+
+    .trigger-item input[type="checkbox"] {
+      width: 12px;
+      height: 12px;
+      accent-color: #2563eb;
+    }
+
+    .trigger-emoji {
+      font-size: 12px;
+    }
+
+    /* ====== SEÇÃO MOTIVACIONAL - TEORIA PROSPECTIVA ====== */
+    .motivation-section {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 2px solid #22c55e;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .motivation-header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .motivation-header h2 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 2px;
+    }
+
+    .motivation-header .subtitle {
+      font-size: 9px;
+      color: #15803d;
+    }
+
+    /* Social Proof */
+    .social-proof {
+      background: white;
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+      margin-bottom: 10px;
+      border: 1px solid #bbf7d0;
+    }
+
+    .social-number {
+      font-size: 20px;
+      font-weight: 800;
+      color: #16a34a;
+    }
+
+    .social-text {
+      font-size: 9px;
+      color: #166534;
+    }
+
+    /* Benefícios temporais (Temporal Discounting) */
+    .benefits-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card {
+      background: white;
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+      border: 1px solid #bbf7d0;
+    }
+
+    .benefit-time {
+      font-size: 8px;
+      font-weight: 700;
+      color: #15803d;
+      margin-bottom: 4px;
+    }
+
+    .benefit-icon {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .benefit-text {
+      font-size: 8px;
+      color: #166534;
+      line-height: 1.3;
+    }
+
+    /* Comparativo Ganho vs Perda (Prospect Theory - balanced) */
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .comparison-box {
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .comparison-box.loss {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .comparison-box.gain {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .comparison-label {
+      font-size: 8px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .comparison-box.loss .comparison-label { color: #dc2626; }
+    .comparison-box.gain .comparison-label { color: #16a34a; }
+
+    .comparison-number {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .comparison-box.loss .comparison-number { color: #dc2626; }
+    .comparison-box.gain .comparison-number { color: #16a34a; }
+
+    .comparison-desc {
+      font-size: 8px;
+      color: #6b7280;
+    }
+
+    /* Self-Efficacy */
+    .self-efficacy {
+      background: white;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      border: 2px solid #22c55e;
+    }
+
+    .efficacy-message {
+      font-size: 10px;
+      color: #166534;
+      margin-bottom: 8px;
+    }
+
+    .efficacy-message strong {
+      font-size: 11px;
+      color: #15803d;
+    }
+
+    .efficacy-steps {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .efficacy-step {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .efficacy-step.done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .efficacy-step.next {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    /* HÁBITOS */
+    .habits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .habit-item {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .habit-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .habit-text {
+      font-size: 8px;
+      color: #1e40af;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #f1f5f9;
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .footer-refs {
+      font-size: 7px;
+      color: #6b7280;
+    }
+
+    .footer-refs strong {
+      color: #374151;
+    }
+
+    .footer-message {
+      font-size: 8px;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    /* PRINT */
+    .print-btn {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .print-btn button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { 
+        padding: 5mm; 
+        margin: 0;
+        width: 100%;
+        min-height: auto;
+      }
+      .print-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <h1>📚 Guia de Letramento em Asma</h1>
+        <p>Entenda sua doença. Controle sua respiração.</p>
+      </div>
+      <div class="header-right">
+        <div><span class="field-label">Nome:</span><span class="field-line"></span></div>
+        <div style="margin-top:4px"><span class="field-label">Data:</span><span class="field-line" style="width:60px"></span></div>
+      </div>
+    </div>
+
+    <!-- O QUE É ASMA -->
+    <div class="section-title"><span class="icon">🫁</span> O que é Asma?</div>
+    <div class="asma-explain">
+      <div class="asma-box problem">
+        <h3>❌ O Problema</h3>
+        <p>Seus brônquios (tubos do pulmão) estão <strong>inflamados por dentro</strong>. Quando encontram gatilhos, eles incham e apertam, causando falta de ar, chiado e tosse.</p>
+        <p style="margin-top:4px"><strong>A inflamação está lá o tempo todo</strong>, mesmo quando você se sente bem.</p>
+      </div>
+      <div class="asma-box solution">
+        <h3>✅ A Solução</h3>
+        <p>O remédio de <strong>manutenção</strong> (Alenia) apaga o fogo da inflamação por dentro. Usando <strong>todo dia</strong>, você cria um escudo protetor nos pulmões.</p>
+        <div class="escudo-visual">
+          <div class="escudo">🛡️</div>
+          <div class="caption">Proteção diária = menos crises</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDICAMENTOS -->
+    <div class="section-title"><span class="icon">💊</span> Seus Medicamentos</div>
+    <div class="meds-grid">
+      
+      <!-- ALENIA -->
+      <div class="med-card alenia">
+        <div class="med-header">
+          <span class="med-name">ALENIA</span>
+          <div class="med-badges">
+            <span class="badge control">Controlador</span>
+            <span class="badge relief">+ Alívio</span>
+          </div>
+        </div>
+        <div class="med-desc">budesonida + formoterol — pó seco (Aerolizer)</div>
+        <div class="med-technique">
+          <h4>Como usar:</h4>
+          <ol class="technique-steps">
+            <li data-step="1.">Abra, coloque a cápsula, feche</li>
+            <li data-step="2.">Aperte os botões laterais (fura a cápsula)</li>
+            <li data-step="3.">Solte o ar todo, ponha na boca</li>
+            <li data-step="4.">Puxe fundo e rápido, segure 10s</li>
+            <li data-step="5.">Bocheche e cuspa água</li>
+          </ol>
+        </div>
+        <div class="med-note">
+          <strong>Dose prescrita:</strong> ______ cápsula(s) ____× ao dia
+        </div>
+      </div>
+
+      <!-- SALBUTAMOL -->
+      <div class="med-card salbutamol">
+        <div class="med-header">
+          <span class="med-name">SALBUTAMOL</span>
+          <div class="med-badges">
+            <span class="badge relief-only">Só Alívio</span>
+          </div>
+        </div>
+        <div class="med-desc">bombinha de resgate — aerossol (spray)</div>
+        <div class="med-technique">
+          <h4>Como usar:</h4>
+          <ol class="technique-steps">
+            <li data-step="1.">Agite bem (10×)</li>
+            <li data-step="2.">Use espaçador se tiver</li>
+            <li data-step="3.">Solte o ar todo</li>
+            <li data-step="4.">Aperte e puxe devagar (5s)</li>
+            <li data-step="5.">Segure 10s, solte</li>
+          </ol>
+        </div>
+        <div class="med-note">
+          <strong>Alternativa se não tiver Alenia.</strong> Use com espaçador.
+        </div>
+      </div>
+    </div>
+
+    <!-- GATILHOS -->
+    <div class="section-title"><span class="icon">⚡</span> Meus Gatilhos (marque os seus)</div>
+    <div class="triggers-grid">
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🧹</span> Poeira</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🍄</span> Mofo</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🚬</span> Fumaça</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🌸</span> Perfume</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">❄️</span> Frio</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🤧</span> Gripe</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🐱</span> Animais</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">😰</span> Estresse</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">🏃</span> Exercício</label>
+      <label class="trigger-item"><input type="checkbox"><span class="trigger-emoji">❓</span> Outro</label>
+    </div>
+
+    <!-- ====== SEÇÃO MOTIVACIONAL - TEORIA PROSPECTIVA ====== -->
+    <div class="motivation-section">
+      <div class="motivation-header">
+        <h2>🌟 Você Está no Caminho Certo!</h2>
+        <div class="subtitle">O tratamento funciona — e funciona rápido</div>
+      </div>
+
+      <!-- SOCIAL PROOF -->
+      <div class="social-proof">
+        <div class="social-number">20 milhões</div>
+        <div class="social-text">de brasileiros convivem com asma. <strong>Milhares já controlam a doença usando o tratamento certo.</strong> Você não está sozinho.</div>
+      </div>
+
+      <!-- BENEFÍCIOS TEMPORAIS (Temporal Discounting) -->
+      <div class="benefits-timeline">
+        <div class="benefit-card">
+          <div class="benefit-time">EM 1 SEMANA</div>
+          <div class="benefit-icon">😴</div>
+          <div class="benefit-text">Noites melhores, menos acordar</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-time">EM 2 SEMANAS</div>
+          <div class="benefit-icon">🏃</div>
+          <div class="benefit-text">Mais fôlego para atividades</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-time">EM 1 MÊS</div>
+          <div class="benefit-icon">📉</div>
+          <div class="benefit-text">Menos uso de resgate</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-time">EM 3 MESES</div>
+          <div class="benefit-icon">🛡️</div>
+          <div class="benefit-text">Proteção máxima contra crises</div>
+        </div>
+      </div>
+
+      <!-- COMPARATIVO GANHO vs PERDA (Prospect Theory - balanced) -->
+      <div class="comparison-row">
+        <div class="comparison-box loss">
+          <div class="comparison-label">❌ SEM tratamento diário</div>
+          <div class="comparison-number">3×</div>
+          <div class="comparison-desc">mais chance de crise grave</div>
+        </div>
+        <div class="comparison-box gain">
+          <div class="comparison-label">✅ COM tratamento diário</div>
+          <div class="comparison-number">50%</div>
+          <div class="comparison-desc">menos crises e idas ao hospital</div>
+        </div>
+      </div>
+
+      <!-- SELF-EFFICACY -->
+      <div class="self-efficacy">
+        <div class="efficacy-message">
+          Cada dia que você usa o remédio é uma vitória. <strong>Você é capaz de controlar sua asma.</strong>
+        </div>
+        <div class="efficacy-steps">
+          <span class="efficacy-step done">✓ Entende a doença</span>
+          <span class="efficacy-step done">✓ Sabe usar o remédio</span>
+          <span class="efficacy-step next">→ Agora é só manter!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HÁBITOS PROTETORES -->
+    <div class="section-title"><span class="icon">💪</span> Hábitos que Protegem</div>
+    <div class="habits-grid">
+      <div class="habit-item">
+        <div class="habit-icon">🧹</div>
+        <div class="habit-text">Limpe casa com pano úmido</div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-icon">🛏️</div>
+        <div class="habit-text">Lave roupa de cama 1×/sem</div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-icon">🪟</div>
+        <div class="habit-text">Ventile a casa todo dia</div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-icon">⏰</div>
+        <div class="habit-text">Use remédio no mesmo horário</div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-refs">
+        <strong>Referências:</strong> GINA 2024 • Estudos SYGMA 1 e 2 (8.000 pacientes) • Estudos SMART • Ministério da Saúde • SBPT 2023
+      </div>
+      <div class="footer-message">
+        📌 Leia com calma. Tire dúvidas na próxima consulta.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="print-btn">
+    <button onclick="window.print()">🖨️ Imprimir Guia de Letramento</button>
+  </div>
+</body>
+</html>
