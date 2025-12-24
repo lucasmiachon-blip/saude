@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materiais de Asma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      color: #1e40af;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 16px;
+      color: #64748b;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card.blue { border-color: #3b82f6; }
+    .card.green { border-color: #22c55e; }
+    .card.orange { border-color: #f97316; }
+    .card.purple { border-color: #8b5cf6; }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .card-badge {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .card.blue .card-badge { background: #dbeafe; color: #1e40af; }
+    .card.green .card-badge { background: #dcfce7; color: #166534; }
+    .card.orange .card-badge { background: #ffedd5; color: #9a3412; }
+    .card.purple .card-badge { background: #ede9fe; color: #5b21b6; }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <h1>🫁 Materiais de Asma</h1>
+      <p>Ferramentas para pacientes e profissionais de saúde</p>
+    </div>
+
+    <div class="section-title">📋 Para Pacientes</div>
+    <div class="cards">
+      
+      <a href="plano_acao_asma.html" class="card blue">
+        <div class="card-icon">🚦</div>
+        <div class="card-title">Plano de Ação</div>
+        <div class="card-desc">Zonas verde, amarela e vermelha. O que fazer em cada situação. Para colar na geladeira.</div>
+        <span class="card-badge">FOLHA 1</span>
+      </a>
+
+      <a href="letramento_asma_paciente.html" class="card green">
+        <div class="card-icon">📚</div>
+        <div class="card-title">Guia de Letramento</div>
+        <div class="card-desc">Entenda a doença, aprenda a técnica do remédio, identifique seus gatilhos.</div>
+        <span class="card-badge">FOLHA 2</span>
+      </a>
+
+      <a href="acq6.html" class="card orange">
+        <div class="card-icon">📝</div>
+        <div class="card-title">ACQ-6</div>
+        <div class="card-desc">Questionário de Controle da Asma. Preencha antes de cada consulta.</div>
+        <span class="card-badge">Questionário</span>
+      </a>
+
+    </div>
+
+    <div class="section-title">👨‍⚕️ Para Profissionais</div>
+    <div class="cards">
+
+      <a href="guia_comunicacao_clinica_v7.html" class="card purple">
+        <div class="card-icon">🗣️</div>
+        <div class="card-title">Guia de Comunicação Clínica</div>
+        <div class="card-desc">Entrevista motivacional, técnicas OARS, detecção de baixa adesão, frases prontas.</div>
+        <span class="card-badge">6 Abas</span>
+      </a>
+
+      <a href="guia_v8.html" class="card purple">
+        <div class="card-icon">📖</div>
+        <div class="card-title">Guia EM Completo</div>
+        <div class="card-desc">Versão completa do guia de Entrevista Motivacional com evidências.</div>
+        <span class="card-badge">Versão 8</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <p>Baseado em GINA 2024 • Estudos SYGMA • SBPT 2023</p>
+      <p style="margin-top:8px">Materiais gratuitos para uso clínico e educacional</p>
+    </div>
+
+  </div>
+</body>
+</html>
