@@ -14,6 +14,10 @@
   --yellow-bg: #fef9c3;
   --red: #dc2626;
   --red-bg: #fee2e2;
+  --blue: #2563eb;
+  --blue-bg: #dbeafe;
+  --orange: #ea580c;
+  --orange-bg: #ffedd5;
   --paper: #fafafa;
   --card: #fff;
   --line: #e5e5e5;
@@ -23,9 +27,9 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--paper);
   color: var(--ink);
-  font-size: 10px;
-  line-height: 1.35;
-  padding: 10px;
+  font-size: 9px;
+  line-height: 1.3;
+  padding: 8px;
 }
 .page {
   max-width: 800px;
@@ -33,187 +37,225 @@ body {
   background: var(--card);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 14px 16px;
+  padding: 12px 14px;
 }
+
+/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 3px solid var(--ink);
-  padding-bottom: 8px;
-  margin-bottom: 10px;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
 }
-h1 { font-size: 20px; font-weight: 800; }
-.patient-fields {
-  display: flex;
-  gap: 12px;
-  font-size: 9px;
-}
-.field { border-bottom: 1px solid var(--ink); min-width: 100px; }
+h1 { font-size: 18px; font-weight: 800; }
+.header-sub { font-size: 8px; color: #666; }
+.patient-fields { display: flex; gap: 10px; font-size: 8px; }
+.field { border-bottom: 1px solid var(--ink); min-width: 80px; }
 .field-label { font-weight: 600; }
 
-.med-row {
+/* MEDICAMENTOS */
+.meds-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-  background: #f0f9ff;
-  border: 2px solid #3b82f6;
-  border-radius: 6px;
-  padding: 8px 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
-.med-box h3 { font-size: 10px; font-weight: 700; margin-bottom: 4px; color: #1d4ed8; }
-.med-name { font-size: 13px; font-weight: 700; }
-.med-dose { font-size: 9px; color: #555; }
+.med-card {
+  border-radius: 6px;
+  padding: 8px;
+}
+.med-alenia {
+  background: var(--blue-bg);
+  border: 2px solid var(--blue);
+}
+.med-salbutamol {
+  background: var(--orange-bg);
+  border: 2px solid var(--orange);
+}
+.med-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.med-name { font-size: 14px; font-weight: 800; }
+.med-name-alenia { color: var(--blue); }
+.med-name-salbutamol { color: var(--orange); }
+.med-badges { display: flex; gap: 4px; }
+.badge {
+  font-size: 7px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.badge-control { background: var(--blue); color: white; }
+.badge-relief { background: var(--orange); color: white; }
+.med-sub { font-size: 8px; color: #555; margin-bottom: 4px; }
+.med-dose-row { font-size: 8px; margin-bottom: 3px; }
+.med-note { font-size: 8px; background: rgba(255,255,255,0.6); padding: 4px; border-radius: 3px; }
+.line-write { border-bottom: 1px solid var(--ink); display: inline-block; min-width: 60px; }
 
+/* ZONAS */
 .zones {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 .zone {
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 8px;
 }
 .zone-green { background: var(--green-bg); border: 2px solid var(--green); }
 .zone-yellow { background: var(--yellow-bg); border: 2px solid var(--yellow); }
 .zone-red { background: var(--red-bg); border: 2px solid var(--red); }
 
-.zone-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
-}
-.zone-icon { font-size: 18px; }
-.zone-title { font-size: 12px; font-weight: 800; }
+.zone-header { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+.zone-icon { font-size: 14px; }
+.zone-title { font-size: 10px; font-weight: 800; }
 .zone-green .zone-title { color: var(--green); }
 .zone-yellow .zone-title { color: var(--yellow); }
 .zone-red .zone-title { color: var(--red); }
 
-.zone h4 { font-size: 9px; font-weight: 700; margin: 6px 0 3px; }
-.zone ul { margin: 0; padding-left: 14px; }
-.zone li { margin-bottom: 2px; }
+.zone h4 { font-size: 8px; font-weight: 700; margin: 4px 0 2px; }
+.zone ul { margin: 0; padding-left: 12px; font-size: 8px; }
+.zone li { margin-bottom: 1px; }
 
 .action-box {
   background: rgba(255,255,255,0.7);
   border-radius: 4px;
-  padding: 6px;
-  margin-top: 6px;
+  padding: 5px;
+  margin-top: 4px;
 }
 .action-step {
   display: flex;
   align-items: flex-start;
-  gap: 6px;
-  margin-bottom: 4px;
+  gap: 4px;
+  margin-bottom: 3px;
+  font-size: 8px;
 }
 .action-num {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   background: var(--ink);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
   flex-shrink: 0;
 }
-.dose-inline {
+
+/* DOSE BADGES INLINE */
+.dose-badge {
   display: inline-block;
-  padding: 1px 6px;
+  padding: 1px 5px;
   border-radius: 3px;
-  font-weight: 600;
-  font-size: 9px;
+  font-weight: 700;
+  font-size: 8px;
 }
-.dose-c { background: #dbeafe; color: #1d4ed8; }
-.dose-r { background: #ffedd5; color: #c2410c; }
+.dose-alenia { background: var(--blue); color: white; }
+.dose-salbutamol { background: var(--orange); color: white; }
 
 .samu-box {
   background: var(--red);
   color: white;
   text-align: center;
-  padding: 6px;
+  padding: 4px;
   border-radius: 4px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
-.samu-num { font-size: 20px; font-weight: 800; }
+.samu-num { font-size: 16px; font-weight: 800; }
 
+/* BOTTOM ROW */
 .bottom-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
-.triggers-box, .info-box {
+.box {
   border: 2px solid var(--line);
   border-radius: 6px;
-  padding: 8px;
+  padding: 6px;
 }
-.triggers-box h3, .info-box h3 { font-size: 10px; font-weight: 700; margin-bottom: 6px; }
+.box h3 { font-size: 9px; font-weight: 700; margin-bottom: 4px; }
+
 .triggers-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  gap: 3px;
 }
 .trigger-item {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 9px;
+  gap: 3px;
+  font-size: 8px;
 }
-.trigger-item input { width: 12px; height: 12px; }
+.trigger-item input { width: 10px; height: 10px; }
 
 .threshold-row {
   display: flex;
-  gap: 6px;
-  margin-bottom: 6px;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 .threshold {
   flex: 1;
   text-align: center;
-  padding: 4px;
+  padding: 3px;
   border-radius: 4px;
-  font-size: 9px;
+  font-size: 8px;
 }
 .t-green { background: var(--green-bg); border: 1px solid var(--green); }
 .t-yellow { background: var(--yellow-bg); border: 1px solid var(--yellow); }
 .t-red { background: var(--red-bg); border: 1px solid var(--red); }
-.threshold .num { font-size: 12px; font-weight: 700; }
+.threshold .num { font-size: 11px; font-weight: 700; }
+
+.limit-box {
+  background: #fee2e2;
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  padding: 4px;
+  margin-top: 4px;
+  font-size: 8px;
+  text-align: center;
+}
+.limit-box strong { color: var(--red); }
 
 .corticoide-box {
   background: #fef3c7;
   border: 1px solid #f59e0b;
   border-radius: 4px;
-  padding: 6px;
-  margin-top: 6px;
-  font-size: 9px;
+  padding: 5px;
+  margin-top: 4px;
+  font-size: 8px;
 }
 .corticoide-box strong { color: #b45309; }
+.corticoide-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 3px; }
+.corticoide-field { font-size: 7px; }
 
+/* FOOTER */
 .next-appt {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: #f0fdf4;
   border: 2px solid var(--green);
   border-radius: 6px;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 6px;
+  margin-bottom: 6px;
 }
-.next-appt-icon { font-size: 18px; }
-.next-appt-label { font-weight: 700; }
+.next-appt-icon { font-size: 14px; }
+.next-appt-label { font-weight: 700; font-size: 9px; }
 .next-appt-field { flex: 1; border-bottom: 1px solid var(--ink); }
 
 .footer-msg {
   background: #fef3c7;
   border-radius: 4px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   text-align: center;
-  font-size: 9px;
-  margin-bottom: 8px;
+  font-size: 8px;
+  margin-bottom: 6px;
 }
 
 .refs {
@@ -221,17 +263,17 @@ h1 { font-size: 20px; font-weight: 800; }
   color: #888;
   text-align: center;
   border-top: 1px solid var(--line);
-  padding-top: 6px;
+  padding-top: 4px;
 }
 
-.print-btn { text-align: right; margin-top: 8px; }
+.print-btn { text-align: right; margin-top: 6px; }
 button {
   background: var(--ink);
   color: white;
   border: none;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -246,26 +288,45 @@ button {
 <body>
 <div class="page">
   <header class="header">
-    <h1>🫁 Meu Plano da Asma</h1>
+    <div>
+      <h1>🚨 Plano de Ação — Asma</h1>
+      <div class="header-sub">Cole na geladeira. Use quando a respiração mudar.</div>
+    </div>
     <div class="patient-fields">
       <div><span class="field-label">Nome:</span> <span class="field"></span></div>
       <div><span class="field-label">Data:</span> <span class="field"></span></div>
     </div>
   </header>
 
-  <div class="med-row">
-    <div class="med-box">
-      <h3>💊 MEU CONTROLADOR (todo dia)</h3>
-      <div class="med-name">_______________________</div>
-      <div class="med-dose">Dose: ______ • Horário: ______</div>
+  <!-- MEDICAMENTOS -->
+  <div class="meds-row">
+    <div class="med-card med-alenia">
+      <div class="med-header">
+        <span class="med-name med-name-alenia">ALENIA</span>
+        <div class="med-badges">
+          <span class="badge badge-control">Controlador</span>
+          <span class="badge badge-relief">+ Alívio</span>
+        </div>
+      </div>
+      <div class="med-sub">budesonida + formoterol — pó seco</div>
+      <div class="med-dose-row">📋 Dose prescrita: <span class="line-write"></span></div>
+      <div class="med-note">💡 Use <strong>todo dia</strong> (previne) + <strong>quando apertar</strong> (alivia)</div>
     </div>
-    <div class="med-box">
-      <h3>⚡ MEU RESGATE (SOS)</h3>
-      <div class="med-name">_______________________</div>
-      <div class="med-dose">Dose: ______ jatos quando precisar</div>
+
+    <div class="med-card med-salbutamol">
+      <div class="med-header">
+        <span class="med-name med-name-salbutamol">SALBUTAMOL</span>
+        <div class="med-badges">
+          <span class="badge badge-relief">Só Alívio</span>
+        </div>
+      </div>
+      <div class="med-sub">bombinha de resgate — aerossol (spray)</div>
+      <div class="med-dose-row">📋 Dose: <span class="line-write"></span></div>
+      <div class="med-note">⚠️ Alternativa se não tiver Alenia. Use com espaçador.</div>
     </div>
   </div>
 
+  <!-- ZONAS -->
   <div class="zones">
     <!-- VERDE -->
     <div class="zone zone-green">
@@ -283,7 +344,7 @@ button {
         <h4>👍 Fazer:</h4>
         <div class="action-step">
           <span class="action-num">1</span>
-          <span>Continue o <span class="dose-inline dose-c">CONTROLADOR</span> todo dia</span>
+          <span>Continue <span class="dose-badge dose-alenia">ALENIA</span> todo dia</span>
         </div>
         <div class="action-step">
           <span class="action-num">2</span>
@@ -302,13 +363,13 @@ button {
       <ul>
         <li>Tosse, chiado, aperto</li>
         <li>Acordou à noite</li>
-        <li>Cansaço para atividades</li>
+        <li>Cansaço nas atividades</li>
       </ul>
       <div class="action-box">
         <h4>⚡ Fazer AGORA:</h4>
         <div class="action-step">
           <span class="action-num">1</span>
-          <span><span class="dose-inline dose-r">RESGATE</span> 2-4 jatos</span>
+          <span><span class="dose-badge dose-alenia">ALENIA 1 dose</span> ou <span class="dose-badge dose-salbutamol">SALBUTAMOL 4 jatos</span></span>
         </div>
         <div class="action-step">
           <span class="action-num">2</span>
@@ -337,7 +398,7 @@ button {
         <h4>🆘 IMEDIATO:</h4>
         <div class="action-step">
           <span class="action-num">1</span>
-          <span><span class="dose-inline dose-r">RESGATE</span> 4-6 jatos</span>
+          <span><span class="dose-badge dose-alenia">ALENIA 1 dose</span> ou <span class="dose-badge dose-salbutamol">SALBUTAMOL 4-6 jatos</span></span>
         </div>
         <div class="action-step">
           <span class="action-num">2</span>
@@ -354,9 +415,10 @@ button {
     </div>
   </div>
 
+  <!-- BOTTOM ROW -->
   <div class="bottom-row">
-    <div class="triggers-box">
-      <h3>⚡ Meus Gatilhos (marque os seus)</h3>
+    <div class="box">
+      <h3>⚡ Meus Gatilhos (marque)</h3>
       <div class="triggers-grid">
         <label class="trigger-item"><input type="checkbox"> 🧹 Poeira</label>
         <label class="trigger-item"><input type="checkbox"> 🦠 Mofo</label>
@@ -370,17 +432,24 @@ button {
       </div>
     </div>
 
-    <div class="info-box">
-      <h3>💨 Uso de RESGATE por semana:</h3>
+    <div class="box">
+      <h3>💨 Doses EXTRAS por semana:</h3>
       <div class="threshold-row">
         <div class="threshold t-green"><div class="num">0-2</div>✅ OK</div>
-        <div class="threshold t-yellow"><div class="num">3-4</div>⚠️ Atenção</div>
-        <div class="threshold t-red"><div class="num">5+</div>🔴 Médico</div>
+        <div class="threshold t-yellow"><div class="num">3-10</div>⚠️ Atenção</div>
+        <div class="threshold t-red"><div class="num">>10</div>🔴 Médico</div>
+      </div>
+      <div class="limit-box">
+        <strong>🚨 Regra:</strong> Se >8 doses em 3h sem melhora → <strong>EMERGÊNCIA</strong>
       </div>
       <div class="corticoide-box">
-        <strong>💊 Corticoide oral (se prescrito):</strong><br>
-        Prednisona ____ mg por ____ dias<br>
-        <em>Iniciar na zona amarela/vermelha se orientado</em>
+        <strong>💊 Corticoide oral (se prescrito):</strong>
+        <div class="corticoide-fields">
+          <div class="corticoide-field">Nome: <span class="line-write"></span></div>
+          <div class="corticoide-field">Dose: <span class="line-write"></span></div>
+          <div class="corticoide-field">Dias: <span class="line-write"></span></div>
+          <div class="corticoide-field">Horário: <span class="line-write"></span></div>
+        </div>
       </div>
     </div>
   </div>
