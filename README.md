@@ -37,9 +37,18 @@ Repositório de ferramentas digitais para profissionais de saúde, focadas em co
 saude/
 └── asma/
     ├── guia_comunicacao_clinica_v8.html   # Guia principal (12 abas)
-    ├── ACQ-6.html                          # Questionário Controle Asma (em breve)
-    └── termo_alarmes.html                  # Sinais de alerta (em breve)
+    ├── acq6.html                           # Questionário Controle Asma (ACQ-6)
+    └── plano_acao_asma.html                # Plano de Ação (zonas verde/amarelo/vermelho)
 ```
+
+---
+
+## 📄 Ferramentas para Pacientes
+
+| Arquivo | Descrição | Link |
+|---------|-----------|------|
+| **ACQ-6** | Questionário de Controle da Asma (6 itens) com cálculo de score, MCID e interpretação | [Acessar](https://lucasmiachon-blip.github.io/saude/asma/acq6.html) |
+| **Plano de Ação** | Plano semáforo (verde/amarelo/vermelho) para manejo domiciliar | [Acessar](https://lucasmiachon-blip.github.io/saude/asma/plano_acao_asma.html) |
 
 ---
 
